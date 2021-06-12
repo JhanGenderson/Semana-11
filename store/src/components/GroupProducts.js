@@ -32,7 +32,7 @@ export default function GroupProducts({
   }, [filtroPrecio, filtroNombre]);
 
   return (
-    <div className="container">
+    <div className="container mt-2">
       <div>
         <h2>{categoria}</h2>
       </div>

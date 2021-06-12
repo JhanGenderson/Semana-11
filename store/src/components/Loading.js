@@ -15,8 +15,8 @@ export default function Loading() {
                 style={{
                     color:'white',
                     position:'absolute',
-                    top:'calc(50%-50px)',
-                    left:'calc(50%-50px)',
+                    top:'calc(50% - 50px)',
+                    left:'calc(50% - 50px)',
 
                 }}></i>
         </div>
