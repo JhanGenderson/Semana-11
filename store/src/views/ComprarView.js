@@ -1,6 +1,8 @@
 import React, { useContext } from "react";
 import { CarritoContext } from "../context/carritoContext";
 import { useForm } from "react-hook-form";
+import {MapContainer, TileLayer} from 'react-leaflet'
+
 
 export default function ComprarView() {
   const { carrito } = useContext(CarritoContext);
@@ -72,9 +74,13 @@ export default function ComprarView() {
                 placeholder="Ej. Lima"
                 {...register("ciudad", {pattern:/^[A-Za-z]/i})}
               />
-              {errors.ciudad && <span></span>}
-              <button type="submit" className="btn btn-dark">Confirmar Compra</button>
+              {errors.ciudad &&  <span className="text-danger">Solamente Letras</span>}
             </div>
+            <MapContainer center={[-12.060028393280035, -77.0100165511122]} zoom={17}>
+
+            </MapContainer>
+
+            <button type="submit" className="btn btn-dark">Confirmar Compra</button>
           </form>
         </div>
       </div>
