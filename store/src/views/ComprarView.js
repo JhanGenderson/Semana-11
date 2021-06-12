@@ -1,7 +1,9 @@
 import React, { useContext } from "react";
 import { CarritoContext } from "../context/carritoContext";
 import { useForm } from "react-hook-form";
-import {MapContainer, TileLayer} from 'react-leaflet'
+import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+// import iconMarker from '../assets/marker.png'
+import L from 'leaflet'
 
 
 export default function ComprarView() {
@@ -12,9 +14,15 @@ export default function ComprarView() {
     formState: { errors },
   } = useForm();
 
-  const recibirSubmit = (datos) =>{
-      console.log(datos)
-  }
+  const customIcon = new L.icon({
+    iconUrl:'https://image.flaticon.com/icons/png/512/1397/1397898.png',
+    iconSize:[50,50]
+    
+  })
+
+  const recibirSubmit = (datos) => {
+    console.log(datos);
+  };
 
   return (
     <div className="container mt-4">
@@ -46,15 +54,16 @@ export default function ComprarView() {
           <h4>Datos del Comprador</h4>
           <form onSubmit={handleSubmit(recibirSubmit)}>
             <div className="mb-2">
-              <label className="form-label">
-                Nombres y Apellidos:</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  placeholder="Ej. Juan Perez"
-                  {...register("nombre",{required:true}) }
-                />
-              {errors.nombre && <span className="text-danger">Este campo es obligatorio</span>}
+              <label className="form-label">Nombres y Apellidos:</label>
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Ej. Juan Perez"
+                {...register("nombre", { required: true })}
+              />
+              {errors.nombre && (
+                <span className="text-danger">Este campo es obligatorio</span>
+              )}
             </div>
             <div className="mb-2">
               <label className="form-label">Numero de celular</label>
@@ -62,9 +71,13 @@ export default function ComprarView() {
                 type="text"
                 className="form-control"
                 placeholder="987654321"
-                {...register("numero",{minLength:9})}
+                {...register("numero", { minLength: 9 })}
               />
-              {errors.numero && <span className="text-danger">Longitud minima de 9 digitos</span>}
+              {errors.numero && (
+                <span className="text-danger">
+                  Longitud minima de 9 digitos
+                </span>
+              )}
             </div>
             <div className="mb-2">
               <label className="form-label">Ciudad</label>
@@ -72,15 +85,36 @@ export default function ComprarView() {
                 type="text"
                 className="form-control"
                 placeholder="Ej. Lima"
-                {...register("ciudad", {pattern:/^[A-Za-z]/i})}
+                {...register("ciudad", { pattern: /^[A-Za-z]/i })}
               />
-              {errors.ciudad &&  <span className="text-danger">Solamente Letras</span>}
+              {errors.ciudad && (
+                <span className="text-danger">Solamente Letras</span>
+              )}
             </div>
-            <MapContainer center={[-12.060028393280035, -77.0100165511122]} zoom={17}>
-
+            <MapContainer
+              center={[-12.060028393280035, -77.0100165511122]}
+              zoom={17}
+              style={{ height: "400px" }}
+            >
+              <TileLayer
+                attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+              <Marker
+               position={
+                 [-12.060028393280035,
+                  -77.0100165511122]}
+                icon={customIcon}>
+                
+                <Popup>
+                  <h5>'Mi direccion es :....'</h5>
+                </Popup>
+              </Marker>
             </MapContainer>
 
-            <button type="submit" className="btn btn-dark">Confirmar Compra</button>
+            <button type="submit" className="btn btn-dark">
+              Confirmar Compra
+            </button>
           </form>
         </div>
       </div>
