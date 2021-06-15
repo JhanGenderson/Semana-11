@@ -22,14 +22,14 @@ export default function PortadaView() {
             categoria ="Moda Casual" 
             id_categoria="1"
             setProductos={setProductos}
-            mostrarFiltro={true}
+            
             />
             <GroupProducts 
             productos={productos} 
             categoria ="Random" 
             id_categoria="2"
             setProductos={setProductos}
-            mostrarFiltro={true}
+          
             />
         </div>
     )

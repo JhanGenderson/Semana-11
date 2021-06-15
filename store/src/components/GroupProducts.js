@@ -26,8 +26,12 @@ export default function GroupProducts({
 
   useEffect(() => {
     let productosFiltrados = productosOriginal.filter((prod) => {
-      return prod.precio >= filtroPrecio[0] && prod.precio <= filtroPrecio[1] && prod.nombre.toLowerCase().includes(filtroNombre.toLowerCase())
-    })
+      return (
+        prod.precio >= filtroPrecio[0] &&
+        prod.precio <= filtroPrecio[1] &&
+        prod.nombre.toLowerCase().includes(filtroNombre.toLowerCase())
+      );
+    });
     setProductos(productosFiltrados);
   }, [filtroPrecio, filtroNombre]);
 
@@ -66,7 +70,9 @@ export default function GroupProducts({
                   className="form-control"
                   placeholder="Ej. Gorro"
                   value={filtroNombre}
-                  onChange={(e) => {setFiltroNombre(e.target.value) }}
+                  onChange={(e) => {
+                    setFiltroNombre(e.target.value);
+                  }}
                 />
               </div>
             </div>
