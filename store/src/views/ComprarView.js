@@ -100,7 +100,15 @@ export default function ComprarView() {
                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
-              <Marker
+              {/* {
+                (mapa)=>{
+                    mapa.on("click", ()=>{
+                      
+                    })
+                }
+              } */}
+
+              {/* <Marker
                position={
                  [-12.060028393280035,
                   -77.0100165511122]}
@@ -109,7 +117,7 @@ export default function ComprarView() {
                 <Popup>
                   <h5>'Mi direccion es :....'</h5>
                 </Popup>
-              </Marker>
+              </Marker> */}
             </MapContainer>
 
             <button type="submit" className="btn btn-dark">
